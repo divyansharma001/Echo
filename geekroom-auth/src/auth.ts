@@ -15,17 +15,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             password: {  label: "Password", type: "password" }
         },
         authorize: async (credentials) => {
-            let user = null
-     
-            
-            if (!user) {
-              // No user found, so this is their first attempt to login
-              // meaning this is also the place you could do registration
-              throw new Error("User not found.")
+
+            const user = {email: 'email', password: 'password'};
+           
+            console.log(credentials);
+
+            if(typeof credentials.email != 'string' && typeof credentials.password != 'string'){
+                throw new CredentialsSignin({cause: "Invalid credentials"})
+            }
+
+            if(credentials.password != 'password'){
+                throw new CredentialsSignin({cause: "Password is incorrect"})
+            }else{
+                return user;
             }
      
-            // return user object with their profile data
-            return user
+            
           },
     })
   ],
