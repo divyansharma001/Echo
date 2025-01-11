@@ -1,36 +1,29 @@
 import { auth } from "@/auth";
-import { CommandCopyExample } from "@/components/Commands";
-import { FlipWordsDemo } from "@/components/FlipWords";
-import { HeroHighlightDemo } from "@/components/HeroSectionPhone";
-import { LandingPage } from "@/components/LandingPage";
-import { LogoutButton } from "@/components/Logout";
-
-
-import { TypewriterEffectSmoothDemo } from "@/components/Typewriter";
-
+import AiChatbot from "@/components/AiChatbot";
+import { FeaturesSectionDemo } from "@/components/FeatureSection";
+import Footer from "@/components/Footer";
+import { HeroSection } from "@/components/HeroSection";
+import { Header } from "@/components/Navbar";
+import Team from "@/components/Team";
 import { redirect } from "next/navigation";
+
 
 export default async function Home() {
   const session = await auth();
   console.log(session);
 
   if(!session){
-    redirect("/login")
+    redirect('/')
   }
 
   return (
    <div>
-    <div>
-    <div className="md:block hidden"><TypewriterEffectSmoothDemo/></div>
-    <div className="md:hidden block"><HeroHighlightDemo/></div>
-    <CommandCopyExample/>
-     <LandingPage/>
-     <FlipWordsDemo/>
-     <LogoutButton/>
-    </div>
-    <div>
-     
-    </div>
+    <Header/>
+    <HeroSection/>
+    <FeaturesSectionDemo/>
+    <AiChatbot/>
+    <Team/>
+    <Footer/>
     </div>
   );
 }

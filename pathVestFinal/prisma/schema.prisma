@@ -17,7 +17,5 @@ model User {
   email     String   @unique
   password  String?
   image     String?
-  address   String?
-  phone     String?
   googleId  String?
 }
